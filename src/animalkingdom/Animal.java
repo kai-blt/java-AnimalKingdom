@@ -3,22 +3,36 @@ package animalkingdom;
 abstract class Animal {
     //Fields
     protected int id;
+    protected static int currId = 0;
     protected String name;
     protected int year;
-
     //constructor
     public Animal(String name, int year) {
-        this.id = Math.random() * 1000;
+        currId++;
+        this.id = currId;
         this.name = name;
         this.year = year;
     }
 
     //methods
     public String eat(String food) {
-        return this.name + " ate " + this.food;
+        return this.name + " ate " + food;
     }
 
-    abstract String move(String movement);
-    abstract String breathe(String breath_type);
-    abstract String reproduce(String rep_type);
+    int getid() {
+        return id;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    int getYear() {
+        return year;
+    }
+
+    abstract String move();
+    abstract String breathe();
+    abstract String reproduce();
+
 }
