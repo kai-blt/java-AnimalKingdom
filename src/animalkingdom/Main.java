@@ -89,5 +89,11 @@ public class Main {
         filteredAnimalsList = filterAnimal(animalList, a -> a.getYear() == 1758);
         filteredAnimalsList.sort((a1, a2) -> a1.getName().compareTo(a2.getName()));
         printArrayList(filteredAnimalsList);
+
+        //Stretch *** For the list of animals, list alphabetically those animals that are mammals ***
+        System.out.println("\n ***List alphabetically those animals that are mammals ***");
+        filteredAnimalsList = filterAnimal(animalList, a ->(a.reproduce() == "live birth") && (a.breathe() == "lungs"));
+        filteredAnimalsList.sort((a1, a2) -> a1.getName().compareTo(a2.getName()));
+        printArrayList(filteredAnimalsList);
     }
 }
