@@ -6,6 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+    //Filter method for animals
+    private static List<Animal> filterAnimal(List<Animal> animals, CheckAnimals test) {
+        List<Animal> tempAnimalList = new ArrayList<>();
+
+        for (Animal a : animals) {
+            if (test.test(a)) {
+                tempAnimalList.add(a);
+            }
+        }
+        return tempAnimalList;
+    }
+
+    //Print List method
+    private static void printArrayList(List<Animal> list) {
+        for (Animal a : list) {
+            System.out.println(a);
+        }
+    }
+
+
+
+    //MAIN
     public static void main(String[] args) {
         //create animal list
         List<Animal> animalList = new ArrayList<>();
@@ -17,7 +40,7 @@ public class Main {
         animalList.add(new Mammal("Sloth", 1804));
         animalList.add(new Mammal("Armadillo", 1758));
         animalList.add(new Mammal("Raccoon", 1758));
-        animalList.add(new Mammal("Zorro", 1869));
+        animalList.add(new Mammal("Bigfoot", 2021));
 
         //instantiate birds and add to list
         animalList.add(new Bird("Pigeon", 1837));
@@ -31,12 +54,40 @@ public class Main {
         animalList.add(new Fish("Catfish", 1817));
         animalList.add(new Fish("Perch", 1758));
 
-        //Sort descending by year
-        // Collections.sort(animalList, Comparator.reverseOrder());
-        animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        // Sort descending by year
+        System.out.println("*** List all the animals in descending order by year named ***");
+        animalList.sort((a1, a2) -> a2.getYear() - a1.getYear());
+        printArrayList(animalList);
 
-        for (Animal a : animalList) {
-            System.out.println(a);
-        }
+        //sort by name alphabetically     
+        System.out.println("\n*** List all the animals in ascending by name ***");
+        animalList.sort((a1, a2) -> a1.getName().compareTo(a2.getName()));
+        printArrayList(animalList);
+
+        //List all the animals order by how they move 
+        System.out.println("\n*** List all the animals order by how they move ***");
+        animalList.sort((a1, a2) -> a1.move().compareTo(a2.move()));
+        printArrayList(animalList);
+
+        //sort by animals who breathe by lungs     
+        System.out.println("\n*** List only those animals the breath with lungs ***");
+        List<Animal> filteredAnimalsList = filterAnimal(animalList, a -> a.breathe() == "lungs");
+        printArrayList(filteredAnimalsList);
+
+        //List only those animals that breath with lungs and were named in 1758 ***
+        System.out.println("\n*** List only those animals that breath with lungs and were named in 1758 ***");
+        filteredAnimalsList = filterAnimal(animalList, a -> (a.breathe() == "lungs") && (a.getYear() == 1758));
+        printArrayList(filteredAnimalsList);
+
+        //*** List only those animals that lay eggs and breath with lungs ***
+        System.out.println("\n*** List only those animals that lay eggs and breath with lungs ***");
+        filteredAnimalsList = filterAnimal(animalList, a -> (a.reproduce() == "eggs") && (a.breathe() == "lungs"));
+        printArrayList(filteredAnimalsList);
+
+        //List alphabetically only those animals that were named in 1758 ***
+        System.out.println("\n*** List only those animals that were named in 1758 ***");
+        filteredAnimalsList = filterAnimal(animalList, a -> a.getYear() == 1758);
+        filteredAnimalsList.sort((a1, a2) -> a1.getName().compareTo(a2.getName()));
+        printArrayList(filteredAnimalsList);
     }
 }

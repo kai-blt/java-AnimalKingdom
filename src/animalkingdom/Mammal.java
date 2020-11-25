@@ -23,6 +23,6 @@ public class Mammal extends Animal {
 
     @Override
     public String toString() {
-        return "id: " + this.id + ", name: " + this.name + ", yearNamed = " + this.year;
+        return "Mammal{id: " + this.id + ", name: " + this.name + ", yearNamed: " + this.year + "}";
     }
 }

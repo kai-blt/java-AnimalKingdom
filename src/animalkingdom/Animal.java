@@ -6,6 +6,7 @@ abstract class Animal {
     protected static int currId = 0;
     protected String name;
     protected int year;
+
     //constructor
     public Animal(String name, int year) {
         currId++;

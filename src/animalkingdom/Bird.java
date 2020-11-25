@@ -23,6 +23,6 @@ public class Bird extends Animal {
 
     @Override
     public String toString() {
-        return "id: " + this.id + ", name: " + this.name + ", yearNamed = " + this.year;
+        return "Bird{id: " + this.id + ", name: " + this.name + ", yearNamed: " + this.year + "}";
     }
 }
